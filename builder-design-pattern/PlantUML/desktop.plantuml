@@ -1,0 +1,60 @@
+@startuml desktop
+
+class Desktop {
+    private motherboard
+    private processor
+    private storage
+    private memory
+    private graphicsCard 
+
+    public display()
+    public setMotherBoard()
+    public setProcessor()
+    public setStorage()
+    public setMemory()
+    public setGraphicsCard()
+}
+
+abstract class DesktopBuilder {
+    protected desktop
+
+    public buildMotherboard()
+    public buildProcessor()
+    public buildMemory()
+    public buildStorage()
+    public buildGraphicsCard()
+    public getDesktop()
+}
+
+class DellDesktopBuilder {
+    public buildMotherboard()
+    public buildProcessor()
+    public buildMemory()
+    public buildStorage()
+    public buildGraphicsCard()
+}
+
+class HpDesktopBuilder {
+    public buildMotherboard()
+    public buildProcessor()
+    public buildMemory()
+    public buildStorage()
+    public buildGraphicsCard()
+}
+
+class DesktopDirector {
+    public buildDesktop()
+}
+
+class DesktopBuilderDemo
+
+DesktopBuilder <|.. HpDesktopBuilder
+DesktopBuilder <|.. DellDesktopBuilder
+
+Desktop <-- DesktopBuilder
+
+DellDesktopBuilder o-- DesktopDirector
+HpDesktopBuilder o-- DesktopDirector
+
+DesktopDirector <|-- DesktopBuilderDemo
+@enduml
