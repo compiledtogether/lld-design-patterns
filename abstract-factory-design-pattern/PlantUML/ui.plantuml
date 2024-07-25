@@ -1,0 +1,63 @@
+@startuml UI
+interface IButton {
+    public press()
+}
+
+interface ITextBox {
+    public setText()
+}
+
+class WindowsButton {
+    public press()
+}
+class MacButton {
+    public press()
+}
+
+class WindowsTextBox {
+    public setText()
+}
+class MacTextBox {
+    public setText()
+}
+
+interface IFactory {
+    public createButton(): IButton
+    public createTextBox(): ITextBox
+}
+
+class WindowsFactory {
+    public createButton(): IButton
+    public createTextBox(): ITextBox
+}
+
+class MacFactory {
+    public createButton(): IButton
+    public createTextBox(): ITextBox
+}
+
+class GUIAbstractFactory {
+    public createFactory(osType): IFactory
+}
+
+class Client
+
+IButton <|.. WindowsButton
+IButton <|.. MacButton
+ITextBox <|.. WindowsTextBox
+ITextBox <|.. MacTextBox
+
+IFactory <|.. WindowsFactory
+IFactory <|.. MacFactory
+
+WindowsButton "calls" <-- WindowsFactory
+WindowsTextBox "calls" <-- WindowsFactory
+
+MacButton "calls" <-- MacFactory
+MacTextBox "calls" <-- MacFactory
+
+WindowsFactory "calls" <-- GUIAbstractFactory 
+MacFactory "calls" <-- GUIAbstractFactory 
+
+GUIAbstractFactory "uses" <-- Client
+@enduml
