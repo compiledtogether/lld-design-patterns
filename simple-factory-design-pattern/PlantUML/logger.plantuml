@@ -1,0 +1,25 @@
+@startuml logger
+interface ILogger {
+    public log(msg)
+}
+class DebugLogger {
+    public log(msg)
+}
+class InfoLogger {
+    public log(msg)
+}
+class ErrorLogger {
+    public log(msg)
+}
+class LoggerFactory {
+    public createLogger(): ILogger
+}
+class Client
+
+ILogger <|-- DebugLogger
+ILogger <|-- InfoLogger
+ILogger <|-- ErrorLogger
+
+ILogger "calls" <-- LoggerFactory
+LoggerFactory "uses" <-- Client
+@enduml
