@@ -1,0 +1,39 @@
+@startuml OrderStatus 
+
+interface Observer {
+    public update()
+}
+
+class Customer {
+    public update()
+}
+class DeliveryPartner {
+    public update()
+}
+class Restaurant {
+    public update()
+}
+class CallCenter {
+    public update()
+}
+
+class Order {
+    private id
+    private status
+    private observers[]
+
+    public getId()
+    public getStatus()
+    public setStatus()
+    public attachObserver()
+    public detachObserver()
+    private notifyObserver()
+}
+
+Order o-- Observer
+Observer <|.. Customer
+Observer <|.. DeliveryPartner
+Observer <|.. Restaurant
+Observer <|.. CallCenter
+
+@enduml
