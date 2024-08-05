@@ -1,0 +1,34 @@
+@startuml UberRides
+
+class RideService {
+    public requestRide()
+    public cancelRide()
+}
+
+interface Command {
+    public execute()
+}
+
+class RideRequestCommand {
+    public execute()
+}
+
+class CancelRideRequestCommand {
+    public execute()
+}
+
+class RideRequestInvoker {
+    processRequest()
+}
+
+Command <|.. RideRequestCommand
+Command <|.. CancelRideRequestCommand
+
+' RideRequestInvoker --> Command
+RideRequestInvoker o-- Command
+
+RideRequestCommand --> RideService 
+CancelRideRequestCommand --> RideService 
+ 
+
+@enduml
